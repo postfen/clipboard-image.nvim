@@ -33,10 +33,8 @@ M.get_clip_command = function()
     cmd_check = "pngpaste -b 2>&1"
     cmd_paste = "pngpaste '%s'"
   elseif this_os == "Windows" or this_os == "Wsl" then
-    cmd_check = "Get-Clipboard -Format Image"
-    cmd_paste = "$content = " .. cmd_check .. ";$content.Save('%s', 'png')"
-    cmd_check = 'powershell.exe "' .. cmd_check .. '"'
-    cmd_paste = 'powershell.exe "' .. cmd_paste .. '"'
+    cmd_check = 'powershell.exe "(Get-Clipboard -Format Image)"'
+    cmd_paste = 'powershell.exe "(Get-Clipboard -Format Image).save(' .. "'%s'" .. ')"'
   end
   return cmd_check, cmd_paste
 end
@@ -147,6 +145,11 @@ M.insert_txt = function(affix, path_txt)
       vim.fn.append(current_line_num, indent)
     end
   end
+
+  -- NOTE: WSL2 displays 'tcgetpgrp failed: Not a tty'.
+  -- ex: mode redraws that screen and removes the text.
+  -- The error text is not written to current buffer.
+  vim.cmd("mode")
 end
 
 M.insert_text = M.insert_txt
