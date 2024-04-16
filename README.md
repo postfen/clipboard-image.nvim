@@ -13,32 +13,36 @@
 [Usage & Demo](#usage)
 •
 [Config](#config)
+
 </div>
 
 ---
 
 > Note: this is the currently maintained fork of ekickx/clipboard-image.nvim
 > They have done most of the work, but has seemingly abandoned the project.
-> This fork will apply fixes and updates as long as ekickx is gone.
+> This fork will apply fixes as long as ekickx is gone.
 
 ### Install
+
 > ❗ Requirement: **`xclip`** (X11), **`wl-clipboard`** (Wayland), **`pngpaste`** (MacOS)
-> 
+>
 > ℹ️ Run `:checkhealth clipboard-image` to check a missing dependency
 
-|Plugin manager|Script|
-|---|---|
-|[vim-plug](https://github.com/junegunn/vim-plug)|`Plug 'dfendr/clipboard-image.nvim'`|
-|[packer.nvim](https://github.com/wbthomason/packer.nvim)|`use 'dfendr/clipboard-image.nvim'`|
+| Plugin manager                                           | Script                               |
+| -------------------------------------------------------- | ------------------------------------ |
+| [vim-plug](https://github.com/junegunn/vim-plug)         | `Plug 'dfendr/clipboard-image.nvim'` |
+| [packer.nvim](https://github.com/wbthomason/packer.nvim) | `use 'dfendr/clipboard-image.nvim'`  |
 
 ### Usage
+
 This is the basic usage. If you want to see more you can read [API](/API.md)
 
-|Command|Demo|
-|---|---|
-|`PasteImg`|<kbd>![](https://link.ekickx.vercel.app/clipboard-image.nvim/demo_pasteimg)</kbd>|
+| Command    | Demo                                                                              |
+| ---------- | --------------------------------------------------------------------------------- |
+| `PasteImg` | <kbd>![](https://link.ekickx.vercel.app/clipboard-image.nvim/demo_pasteimg)</kbd> |
 
 ### Config
+
 This plugin is **zero config**, means you don't need to configure anything to works. But if you want to, you can configure it like this:
 
 <details>
@@ -65,14 +69,14 @@ require'clipboard-image'.setup {
   }
 }
 ```
-  
+
 </details>
-  
+
 <details open>
   <summary><strong>Structure</strong></summary></br>
-  
-  See also [API](/API.md#config-structure)
-  
+
+See also [API](/API.md#config-structure)
+
 ```lua
 {
   default = {
@@ -84,27 +88,36 @@ require'clipboard-image'.setup {
 }
 ```
 
-|Options|Default|Description|
-|---|---|---|
-|`img_dir`|`"img"`|Directory where the image from clipboard will be copied to|
-|`img_dir_txt`|`"img"`|Directory that will be inserted to buffer.<br> Example: Your actual dir is `src/assets/img` but your dir on **text** or buffer is `/assets/img`|
-|`img_name`|`function() return os.date('%Y-%m-%d-%H-%M-%S') end`|Image's name|
-|`img_handler`|`function(img)  end`|Function that will handle image after pasted.<br>`img` is a table that contain pasted image's `name` and `path`|
-|`affix`|`default`: `"%s"`</br>`markdown`: `"![](%s)"`</br>`asciidoc`: `"image::%s[]"`|String that sandwiched the image's path|
+| Options       | Default                                                                       | Description                                                                                                                                     |
+| ------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `img_dir`     | `"img"`                                                                       | Directory where the image from clipboard will be copied to                                                                                      |
+| `img_dir_txt` | `"img"`                                                                       | Directory that will be inserted to buffer.<br> Example: Your actual dir is `src/assets/img` but your dir on **text** or buffer is `/assets/img` |
+| `img_name`    | `function() return os.date('%Y-%m-%d-%H-%M-%S') end`                          | Image's name                                                                                                                                    |
+| `img_handler` | `function(img)  end`                                                          | Function that will handle image after pasted.<br>`img` is a table that contain pasted image's `name` and `path`                                 |
+| `affix`       | `default`: `"%s"`</br>`markdown`: `"![](%s)"`</br>`asciidoc`: `"image::%s[]"` | String that sandwiched the image's path                                                                                                         |
 
 </details>
 
 ## Tips
+
 Share your tips [here](https://github.com/ekickx/clipboard-image.nvim/discussions/15)
 
 ## Questions
+
 You can ask your questions on [discussions](https://github.com/dfendr/clipboard-image.nvim/discussions)
 
 ## Contribute
+
 Read the contribution guide [here](/CONTRIBUTING.md)
 
+## Similar Plugins
+
+- [img-clip.nvim](https://github.com/HakonHarnes/img-clip.nvim).
+
 ## Credits
+
 Thanks to:
-- [ferrine/md-img-paste.vim](https://github.com/ferrine/md-img-paste.vim), I look some of its code 
+
+- [ferrine/md-img-paste.vim](https://github.com/ferrine/md-img-paste.vim), I look some of its code
 - [elianiva](https://github.com/elianiva) for giving me feedback on Vim Indonesia (Telegram group)
 - all neovim lua plugin creators and its contributors, I get some inspiration from reading their code
