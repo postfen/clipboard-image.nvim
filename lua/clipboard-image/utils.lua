@@ -7,9 +7,8 @@ M.get_os = function()
     return "Windows"
   end
 
-  local this_os =  tostring(io.popen("uname"):read())
-  if this_os == "Linux" and
-      vim.fn.readfile("/proc/version")[1]:lower():match "microsoft" then
+  local this_os = tostring(io.popen("uname"):read())
+  if this_os == "Linux" and vim.fn.readfile("/proc/version")[1]:lower():match "microsoft" then
     this_os = "Wsl"
   end
   return this_os
@@ -61,7 +60,7 @@ M.is_clipboard_img = function(content)
     return true
   elseif this_os == "Darwin" and string.sub(content[1], 1, 9) == "iVBORw0KG" then -- Magic png number in base64
     return true
-  elseif this_os == "Windows" or this_os == "Wsl" and content ~= nil then
+  elseif (this_os == "Windows" or this_os == "Wsl") and content ~= nil and #content ~= 0 then
     return true
   end
   return false
@@ -149,7 +148,7 @@ M.insert_txt = function(affix, path_txt)
   -- NOTE: WSL2 displays 'tcgetpgrp failed: Not a tty'.
   -- ex: mode redraws that screen and removes the text.
   -- The error text is not written to current buffer.
-  vim.cmd("mode")
+  vim.cmd "mode"
 end
 
 M.insert_text = M.insert_txt
